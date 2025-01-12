@@ -6,24 +6,24 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tootapari-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tootapari-{{ version }}.tar.gz
   sha256: 0b529f8584dd0e2ff748a7b54dd6e5dea5a37d8324f0a0861c84dd834f8b50ef
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
     - appdirs
     - mastodon.py
     - napari
     - numpy
-    - python >=3.8
+    - python >={{ python_min }}
     - python-dotenv
     - qtpy
 
@@ -36,6 +36,7 @@ test:
   requires:
     - pip
     - pyqt
+    - python {{ python_min }}
 
 about:
   home: https://github.com/kephale/tootapari
